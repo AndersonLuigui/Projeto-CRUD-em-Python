@@ -29,7 +29,6 @@ co7 = "#ef5350"   # vermelha
 co8 = "#263238"   # + verde
 co9 = "#e9edf5"   # sky blue
 
-print("Olá Mundo")
 
 # CRIANDO JANELA
 janela = Tk()
