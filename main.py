@@ -98,7 +98,7 @@ def atualizar():
         treev_dicionario = tree.item(treev_dados)
         tree_lista = treev_dicionario['values']
 
-        valor = tree_lista[0]
+        valor_id = tree_lista[0]
 
         e_nome.delete(0,'end')
         e_email.delete(0,'end')
@@ -124,9 +124,9 @@ def atualizar():
             estado = e_estado.get()
             assunto = e_assunto.get()
 
-            lista = [nome, email, telefone, cal, estado, assunto]
+            lista = [nome, email, telefone, cal, estado, assunto, valor_id]
 
-            if nome==' ':
+            if nome=='':
                 messagebox.showerror("Error", "O nome não pode ser vazio") 
             else:
                 atualizar_info(lista)
@@ -143,16 +143,42 @@ def atualizar():
             for widget in frame_direita.winfo_children():
                 widget.destroy()
 
+                mostrar()
+
 
         # BOTÃO CONFIRMAR
         b_confirmar = Button(frame_baixo, command=update, text='Confirmar', width=10, font=('Ivy 7 bold'), fg=co1, bg=co2, relief='raised', overrelief='ridge')
         b_confirmar.place(x=110, y=370)
 
 
-        mostrar()
 
     except IndexError:
         messagebox.showerror('Erro', 'selecione um dos dados na tabela') 
+
+
+# FUNÇÃO DELETAR
+def deletar():
+    try:
+        treev_dados = tree.focus()
+        treev_dicionario = tree.item(treev_dados)
+        tree_lista = treev_dicionario['values']
+
+        valor_id = [tree_lista[0]]
+
+        deletar_info(valor_id)
+        messagebox.showinfo('Sucesso', 'Os dados foram deletados da tabela com sucesso')
+
+        for widget in frame_direita.winfo_children():
+            widget.destroy()
+
+        mostrar()
+
+
+
+    except IndexError:
+        messagebox.showerror('Erro', 'selecione um dos dados na tabela') 
+
+
 
 
 
@@ -211,7 +237,7 @@ b_atualizar.place(x=110, y=340)
 
 
 # BOTÃO DELETAR
-b_deletar = Button(frame_baixo, text='Deletar ', width=10, font=('Ivy 9 bold'), fg=co1, bg=co7, relief='raised', overrelief='ridge')
+b_deletar = Button(frame_baixo, command=deletar, text='Deletar ', width=10, font=('Ivy 9 bold'), fg=co1, bg=co7, relief='raised', overrelief='ridge')
 b_deletar.place(x=205, y=340)
 
 

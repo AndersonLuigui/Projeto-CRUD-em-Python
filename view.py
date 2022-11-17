@@ -22,19 +22,14 @@ con = lite.connect('dados.db')
 
 
 # Inserir informações
-'''
 def inserir_info(i):
     with con:
         cur = con.cursor()
         query = "INSERT INTO formulario (nome, email, telefone, dia_em, estado, assunto) VALUES (?, ?, ?, ?, ?, ?)"
         cur.execute(query,i)
-'''
-
-
 
 
 # Acessar informações
-
 def mostrar_info():
     lista = []
     with con:
@@ -52,13 +47,15 @@ def mostrar_info():
 def atualizar_info(i):
     with con:
         cur = con.cursor()
-        query = "UPDATE formulario SET nome, email, telefone, dia_em, estado, assunto WHERE id=?"
+        query = "UPDATE formulario SET nome=?, email=?, telefone=?, dia_em=?, estado=?, assunto=? WHERE id=?"
         cur.execute(query,i)
-'''
-lista = [1]
+
+
 # Deletar informação
-with con:
-    cur = con.cursor()
-    query = "DELETE FROM formulario WHERE id=?"
-    cur.execute(query,lista)
-'''
+def deletar_info(i):
+    with con:
+        cur = con.cursor()
+        query = "DELETE FROM formulario WHERE id=?"
+        cur.execute(query,i)
+
+
