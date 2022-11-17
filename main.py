@@ -8,6 +8,7 @@ from tkinter import messagebox
 from requests import delete
 
 
+
 # IMPORTANDO tkcalendar
 from tkcalendar import Calendar, DateEntry
 
@@ -55,11 +56,8 @@ frame_direita.grid(row=0, column=1, rowspan=2, padx=1, pady=0, sticky=NSEW)
 app_nome = Label(frame_cima, text='Formulário de Consultoria', anchor=NW, font=('Ivy 13 bold'), fg=co1, bg=co2, relief='flat')
 app_nome.place(x=10, y=20)
 
-# VARIÁVEL TREE GLOBAL
-global tree
 
 # FUNÇÃO INSERIR
-
 def inserir():
     nome = e_nome.get()
     email = e_email.get()
@@ -90,8 +88,10 @@ def inserir():
         mostrar()
 
 
-# FUNÇÃO ATUALIZAR
+# VARIÁVEL TREE GLOBAL
+global tree
 
+# FUNÇÃO ATUALIZAR
 def atualizar():
     try:
         treev_dados = tree.focus()
@@ -112,10 +112,9 @@ def atualizar():
         e_email.insert(0,tree_lista[2])
         e_telefone.insert(0,tree_lista[3])
         e_cal.insert(0,tree_lista[4])
-        e_estado.inserte(0,tree_lista[5])
+        e_estado.insert(0,tree_lista[5])
         e_assunto.insert(0,tree_lista[6])
 
-        # FUNÇÃO INSERIR
 
         def update():
             nome = e_nome.get()
@@ -127,8 +126,8 @@ def atualizar():
 
             lista = [nome, email, telefone, cal, estado, assunto]
 
-            if nome=='':
-                messagebox.showerror("Error", 'O nome não pode ser vazio') 
+            if nome==' ':
+                messagebox.showerror("Error", "O nome não pode ser vazio") 
             else:
                 atualizar_info(lista)
                 messagebox.showinfo('Sucesso', 'Os dados foram atualizados com sucesso')
@@ -144,13 +143,13 @@ def atualizar():
             for widget in frame_direita.winfo_children():
                 widget.destroy()
 
-            # BOTÃO ATUALIZAR
 
-            b_confirmar = Button(frame_baixo, command=update, text='Confirmar ', width=10, font=('Ivy 7 bold'), fg=co1, bg=co2, relief='raised', overrelief='ridge')
-            b_confirmar.place(x=180, y=360)
+        # BOTÃO CONFIRMAR
+        b_confirmar = Button(frame_baixo, command=update, text='Confirmar', width=10, font=('Ivy 7 bold'), fg=co1, bg=co2, relief='raised', overrelief='ridge')
+        b_confirmar.place(x=110, y=370)
 
 
-            mostrar()
+        mostrar()
 
     except IndexError:
         messagebox.showerror('Erro', 'selecione um dos dados na tabela') 
